@@ -1,0 +1,41 @@
+import /vendor/etc/init/vendor.silead.hardware.fingerprintext@1.0-service.rc
+
+on post-fs-data
+
+    chmod 0660 /dev/esfp0
+    chown system system /dev/esfp0
+    chown system system /sys/devices/platform/egis_input/navigation_event
+    chown system system /sys/devices/platform/egis_input/navigation_enable
+    chmod 0666 /sys/devices/platform/egis_input/navigation_event
+    chmod 0666 /sys/devices/platform/egis_input/navigation_enable
+
+    mkdir /data/vendor/silead 0770 system system
+    chmod 0660 /dev/silead_fp
+    chown system system /dev/silead_fp
+
+    mkdir /data/vendor/fingerprint 0770 system system
+    mkdir /mnt/vendor/persist/fingerprint 0770 system system
+    mkdir /data/vendor/egis 0770 system system
+
+service vendor.fps_hal.RMX2020 /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service.RMX2020
+    # "class hal" causes a race condition on some devices due to files created
+    # in /data. As a workaround, postpone startup until later in boot once
+    # /data is mounted.
+    class late_start
+    user system
+    group system input uhid
+
+service ets_hal /vendor/bin/hw/android.hardware.biometrics.fingerprint@2.1-service-rbs
+	# "class hal" causes a race condition on some devices due to files created
+	# in /data. As a workaround, postpone startup until later in boot once
+	# /data is mounted.
+	class late_start
+	user system
+	group system input
+	disabled
+
+on property:persist.vendor.fingerprint.fp_id=E_520 && property:init.svc.fps_hal=running && property:init.svc.fpexts_hal=running && property:init.svc.vendor.fps_hal.RMX2020=running
+	stop fps_hal
+	stop fpexts_hal
+	stop vendor.fps_hal.RMX2020
+	start ets_hal

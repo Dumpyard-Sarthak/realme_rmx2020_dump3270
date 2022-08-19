@@ -1,0 +1,45 @@
+####################################
+# from generate-common-build-props
+# These properties identify this partition image.
+####################################
+ro.product.product.brand=realme
+ro.product.product.device=RMX2020
+ro.product.product.manufacturer=realme
+ro.product.product.model=realme Monet
+ro.product.product.name=arrow_RMX2020
+ro.product.build.date=Fri Aug 19 04:54:41 UTC 2022
+ro.product.build.date.utc=1660884881
+ro.product.build.fingerprint=google/coral/coral:13/TP1A.220624.014/8819323:user/release-keys
+ro.product.build.id=TP1A.220624.021
+ro.product.build.tags=release-keys
+ro.product.build.type=userdebug
+ro.product.build.version.incremental=eng.neolit.20220819.043549
+ro.product.build.version.release=13
+ro.product.build.version.release_or_codename=13
+ro.product.build.version.sdk=33
+####################################
+# from device/realme/RMX2020/configs/props/product.prop
+####################################
+# Privapp permissions whitelisting
+ro.control_privapp_permissions=log
+# One Handed Mode
+ro.support_one_handed_mode=true
+####################################
+# from variable ADDITIONAL_PRODUCT_PROPERTIES
+####################################
+ro.build.characteristics=default
+####################################
+# from variable PRODUCT_PRODUCT_PROPERTIES
+####################################
+ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
+ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
+ro.setupwizard.enterprise_mode=1
+setupwizard.feature.predeferred_enabled=false
+ro.setupwizard.mode=OPTIONAL
+ro.control_privapp_permissions=log
+ro.com.google.ime.kb_pad_port_b=1
+ro.support_one_handed_mode=true
+ro.config.alarm_alert=Bright_morning.ogg
+ro.config.notification_sound=End_note.ogg
+ro.config.ringtone=The_big_adventure.ogg
+# end of file
